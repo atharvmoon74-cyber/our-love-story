@@ -2,9 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Volume2, VolumeX } from "lucide-react";
 
-const TRACK_URL =
-  "https://cdn.pixabay.com/audio/2022/10/30/audio_347111d654.mp3"; // soft romantic piano (royalty-free)
+ import song from "@/assets/song.mp3";
 
+const TRACK_URL = song;
 export function MusicToggle({ autoStart }: { autoStart?: boolean }) {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [muted, setMuted] = useState(true);
