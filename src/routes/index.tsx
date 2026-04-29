@@ -13,21 +13,29 @@ import { ScrollProgress } from "@/components/love/ScrollProgress";
 import { SparkleCursor } from "@/components/love/SparkleCursor";
 import { Particles } from "@/components/love/Particles";
 import { ChapterDots } from "@/components/love/ChapterDots";
+import { SecretLetter } from "@/components/love/SecretLetter";
+import { VoiceNote } from "@/components/love/VoiceNote";
+import { LoveNoteGenerator } from "@/components/love/LoveNoteGenerator";
+import { BucketList } from "@/components/love/BucketList";
+import { TimeCapsule } from "@/components/love/TimeCapsule";
+import { MissYouMeter } from "@/components/love/MissYouMeter";
+import { MovieCredits } from "@/components/love/MovieCredits";
+import { PhotoGallery } from "@/components/love/PhotoGallery";
 import { chapters } from "@/data/chapters";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Our Beautiful Story • Happy 25th Relationship Day ❤" },
+      { title: "Our Beautiful Story • A Cinematic Love Letter ❤" },
       {
         name: "description",
         content:
-          "A cinematic love letter — 25 days down, a lifetime to go. A premium romantic story made just for you.",
+          "A premium cinematic love story made just for you — every chapter, every memory, every reason.",
       },
       { property: "og:title", content: "Our Beautiful Story ❤" },
       {
         property: "og:description",
-        content: "A cinematic love letter celebrating 25 days together.",
+        content: "A cinematic love letter celebrating us.",
       },
     ],
   }),
@@ -65,9 +73,17 @@ function LoveStory() {
                 <StorySection key={c.id} chapter={c} index={i} />
               ))}
 
-              <ThankYouLetter />
+              <PhotoGallery />
+              <VoiceNote />
+              <LoveNoteGenerator />
               <Reasons />
+              <ThankYouLetter />
+              <SecretLetter />
+              <BucketList />
+              <MissYouMeter />
+              <TimeCapsule />
               <LiveCounter />
+              <MovieCredits />
               <Ending />
             </div>
           </motion.div>

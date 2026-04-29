@@ -11,7 +11,7 @@ export type Chapter = {
 export const chapters: Chapter[] = [
   {
     id: 1,
-    title: "The Accident That Was Destiny",
+    title: "The Message That Changed Everything",
     lines: [
       "It started with something random...",
       "A dare. A message.",
