@@ -1,85 +1,101 @@
-@import "tailwindcss" source(none);
-@source "../src";
+/* =========================
+   FONT IMPORT (MUST BE FIRST)
+========================= */
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Dancing+Script:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap");
+
+/* =========================
+   TAILWIND
+========================= */
+@import "tailwindcss";
 @import "tw-animate-css";
+
+@source "../src";
 
 @custom-variant dark (&:is(.dark *));
 
+/* =========================
+   THEME TOKENS
+========================= */
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
+
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
+
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
+
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
+
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
-  --color-gold: var(--gold);
-  --color-rose: var(--rose);
-  --color-plum: var(--plum);
+
   --color-border: var(--border);
   --color-ring: var(--ring);
 
-  --font-display: "Cormorant Garamond", "Playfair Display", serif;
-  --font-script: "Dancing Script", "Great Vibes", cursive;
+  --font-display: "Cormorant Garamond", serif;
+  --font-script: "Dancing Script", cursive;
   --font-sans: "Inter", system-ui, sans-serif;
 }
 
+/* =========================
+   ROOT DESIGN SYSTEM
+========================= */
 :root {
   --radius: 0.75rem;
 
-  /* Cinematic palette */
-  --background: oklch(0.04 0.01 300);          /* near-black */
-  --foreground: oklch(0.97 0.01 320);          /* soft white */
+  /* Base */
+  --background: oklch(0.04 0.01 300);
+  --foreground: oklch(0.97 0.01 320);
+
   --card: oklch(0.08 0.03 320 / 60%);
   --card-foreground: oklch(0.97 0.01 320);
 
-  --primary: oklch(0.68 0.24 350);             /* deep pink */
-  --primary-foreground: oklch(0.99 0 0);
-  --secondary: oklch(0.45 0.22 305);           /* purple */
-  --secondary-foreground: oklch(0.99 0 0);
+  /* Brand */
+  --primary: oklch(0.68 0.24 350);
+  --secondary: oklch(0.45 0.22 305);
+  --accent: oklch(0.85 0.16 85);
+
   --muted: oklch(0.18 0.03 320);
   --muted-foreground: oklch(0.78 0.04 320);
-  --accent: oklch(0.85 0.16 85);               /* gold */
-  --accent-foreground: oklch(0.1 0.02 320);
-
-  --gold: oklch(0.85 0.16 85);
-  --rose: oklch(0.7 0.25 350);
-  --plum: oklch(0.42 0.22 310);
 
   --border: oklch(0.99 0 0 / 12%);
-  --input: oklch(0.99 0 0 / 15%);
   --ring: oklch(0.68 0.24 350);
-  --destructive: oklch(0.6 0.24 27);
-  --destructive-foreground: oklch(0.99 0 0);
-  --popover: oklch(0.08 0.03 320);
-  --popover-foreground: oklch(0.97 0.01 320);
 
-  /* Gradients & glows */
+  /* Gradients */
   --gradient-romantic: linear-gradient(135deg, oklch(0.68 0.24 350), oklch(0.45 0.22 305));
-  --gradient-luxe: linear-gradient(135deg, oklch(0.85 0.16 85), oklch(0.68 0.24 350) 60%, oklch(0.45 0.22 305));
+  --gradient-luxe: linear-gradient(135deg, oklch(0.85 0.16 85), oklch(0.68 0.24 350), oklch(0.45 0.22 305));
   --gradient-night: radial-gradient(ellipse at top, oklch(0.15 0.06 310), oklch(0.04 0.01 300) 70%);
 
+  /* Shadows */
   --shadow-glow-pink: 0 0 60px -10px oklch(0.68 0.24 350 / 60%);
   --shadow-glow-gold: 0 0 50px -10px oklch(0.85 0.16 85 / 50%);
-  --shadow-luxe: 0 30px 80px -20px oklch(0 0 0 / 80%), 0 0 0 1px oklch(0.99 0 0 / 8%);
+  --shadow-luxe: 0 30px 80px -20px oklch(0 0 0 / 80%);
 }
 
+/* =========================
+   BASE
+========================= */
 @layer base {
   * {
     border-color: var(--color-border);
   }
+
   html {
     scroll-behavior: smooth;
     background: black;
   }
+
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
@@ -87,12 +103,16 @@
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
   }
+
   ::selection {
-    background: var(--rose);
-    color: white;
+    background: var(--accent);
+    color: black;
   }
 }
 
+/* =========================
+   UTILITIES
+========================= */
 @layer utilities {
   .font-display { font-family: var(--font-display); }
   .font-script { font-family: var(--font-script); }
@@ -103,14 +123,9 @@
     background-clip: text;
     color: transparent;
   }
+
   .text-gradient-romantic {
     background: var(--gradient-romantic);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-  .text-gradient-gold {
-    background: linear-gradient(135deg, oklch(0.95 0.12 90), oklch(0.75 0.18 75));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -119,8 +134,7 @@
   .glass {
     background: oklch(0.08 0.03 320 / 45%);
     backdrop-filter: blur(20px) saturate(140%);
-    -webkit-backdrop-filter: blur(20px) saturate(140%);
-    border: 1px solid oklch(0.99 0 0 / 12%);
+    border: 1px solid var(--border);
     box-shadow: var(--shadow-luxe);
   }
 
@@ -130,47 +144,49 @@
   .bg-night { background: var(--gradient-night); }
   .bg-romantic { background: var(--gradient-romantic); }
 
-  .text-shadow-glow {
-    text-shadow:
-      0 0 20px oklch(0.68 0.24 350 / 60%),
-      0 0 40px oklch(0.68 0.24 350 / 30%);
-  }
-  .text-shadow-gold {
-    text-shadow:
-      0 0 20px oklch(0.85 0.16 85 / 60%),
-      0 0 40px oklch(0.85 0.16 85 / 30%);
-  }
-
   .no-scrollbar::-webkit-scrollbar { display: none; }
   .no-scrollbar { scrollbar-width: none; }
 }
 
+/* =========================
+   ANIMATIONS
+========================= */
 @keyframes float-up {
   0% { transform: translateY(0) scale(1); opacity: 0; }
   10% { opacity: 1; }
   100% { transform: translateY(-100vh) scale(1.2); opacity: 0; }
 }
+
 @keyframes twinkle {
   0%, 100% { opacity: 0.2; transform: scale(1); }
   50% { opacity: 1; transform: scale(1.4); }
 }
+
 @keyframes shimmer {
   0% { background-position: -200% 0; }
   100% { background-position: 200% 0; }
 }
+
 @keyframes pulse-glow {
   0%, 100% { box-shadow: 0 0 30px -5px oklch(0.68 0.24 350 / 50%); }
   50% { box-shadow: 0 0 60px 0 oklch(0.68 0.24 350 / 80%); }
 }
+
 @keyframes letter-glow {
-  0%, 100% { text-shadow: 0 0 10px oklch(0.97 0.01 320 / 40%); }
-  50% { text-shadow: 0 0 30px oklch(0.97 0.01 320 / 90%), 0 0 60px oklch(0.68 0.24 350 / 60%); }
+  0%, 100% {
+    text-shadow: 0 0 10px oklch(0.97 0.01 320 / 40%);
+  }
+  50% {
+    text-shadow:
+      0 0 30px oklch(0.97 0.01 320 / 90%),
+      0 0 60px oklch(0.68 0.24 350 / 60%);
+  }
 }
 
+/* =========================
+   ANIMATION UTILITIES
+========================= */
 .animate-float-up { animation: float-up 8s linear infinite; }
 .animate-twinkle { animation: twinkle 3s ease-in-out infinite; }
 .animate-pulse-glow { animation: pulse-glow 2.5s ease-in-out infinite; }
 .animate-letter-glow { animation: letter-glow 3s ease-in-out infinite; }
-
-/* Webfont quick load */
-@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Dancing+Script:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap");
